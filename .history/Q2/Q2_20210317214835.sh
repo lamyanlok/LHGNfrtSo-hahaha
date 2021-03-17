@@ -1,0 +1,2 @@
+#!/bin/bash
+ip=$(aws ec2 describe-instances --filters "Name=tag-value, Values=api-server-002" --query 'Reservations[*].Instances[*].{PublicIpAddress:PublicIpAddress}' --output text) ; if test -z "$ip" ; then echo "Host not found" ;else ssh ec2-user@$ip; fi
